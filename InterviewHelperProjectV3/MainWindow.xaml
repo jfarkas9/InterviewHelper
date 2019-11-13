@@ -5,8 +5,106 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterviewHelperProjectV3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Icon="icon.ico"
+        Title="Interview Helper - JFarkas" Height="700" Width="900" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#1b3b6f">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#445e89" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Width" Value="250" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel Name="dockMain" VerticalAlignment="top" HorizontalAlignment="Center" LastChildFill="True">
+        <StackPanel>
+            
+            <WrapPanel>
+                <TextBlock Text="Enter Interview Details : " Width="250" />
+                <TextBox Name="txtEntryId" IsEnabled="False" Visibility="Hidden"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Date of Contact : " />
+                <DatePicker Name="dateDateContact" Width="250" Margin="5" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Company Name : " />
+                <TextBox Name="txtCompanyName" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Recruiter Name : " />
+                <TextBox Name="txtRecruiterName" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Status : " />
+                <ComboBox Name="comboStatus" Width="250" Margin="5">
+                    <ComboBoxItem IsSelected="True">Active</ComboBoxItem>
+                    <ComboBoxItem>Inactive</ComboBoxItem>
+                </ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Location : " />
+                <TextBox Name="txtLocation" />
+                <TextBlock Name="Map" IsEnabled="False">           
+                    <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate1">
+                        Map1
+                    </Hyperlink>
+                    
+                    <Hyperlink NavigateUri="http://www.google.com" RequestNavigate="Hyperlink_RequestNavigate2">
+                        Map2
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Salary : " />
+                <TextBox Name="txtSalary" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Notes : " />
+                <TextBox Name="txtNotes" Height="60" TextWrapping="Wrap" />
+            </WrapPanel>
+            <WrapPanel>
+                <Label x:Name="lbluserId" Foreground="White" />
+                <Button Name="btnLogOff" Content="Log Off" Width="100" Click="BtnLogOff_Click" Margin="20 0  0 0"/>
+                <Button Name="btnChangePass" Content="Change Password" Width="100" Click="BtnChangePass_Click" Margin="20 0  0 0" />
+            </WrapPanel>
+            
+            <!--Buttons-->
+            <WrapPanel Margin="0" HorizontalAlignment="Center" Height="59">
+                <Button Name="btnAdd" Content="Add" FontSize="25" Width="120" Margin="5" Click="btnAdd_Click" />
+                <Button Name="btnEdit" Content="Edit" FontSize="25" Width="120" Margin="5" Click="btnEdit_Click" />
+                <Button Name="btnDelete" Content="Delete" FontSize="25" Width="120" Margin="5" Click="btnDelete_Click" />
+                <Button Name="btnCancel" Content="Clear" FontSize="25" Width="120" Margin="5" Click="btnClear_Click" />
+                <Button Name="btnExit" Content="Exit" FontSize="25" Width="120" Margin="5" Click="btnExit_Click" />
+            </WrapPanel>
+            
+            <!--Data Grid-->
+            <Label Content="No records found." Name="lblCount" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="#FFE10000"></Label>
+            <WrapPanel Margin="20" HorizontalAlignment="Center">
+                <DataGrid AutoGenerateColumns="False" Name="gvData" SelectionMode="Single" FontSize="15" Padding="5" Background="White" AlternatingRowBackground="AliceBlue">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date of Contact" Binding="{Binding DateOfContact, StringFormat=\{0:MM/dd/yyyy \}}"/>
+                        <DataGridTextColumn Header="Company Name" Binding="{Binding CompanyName}"/>
+                        <DataGridTextColumn Header="Recruiter Name" Binding="{Binding RecruiterName}"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                        <DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
+                        <DataGridTextColumn Header="Salary" Binding="{Binding Salary}"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </WrapPanel>
+        </StackPanel>
+    </DockPanel>
 </Window>
